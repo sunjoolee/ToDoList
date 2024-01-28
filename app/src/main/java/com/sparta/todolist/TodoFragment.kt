@@ -29,7 +29,6 @@ class TodoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        todoAdapter.notifyDataSetChanged()
     }
     companion object {
         fun newInstance() = TodoFragment()
