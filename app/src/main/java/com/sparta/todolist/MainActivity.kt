@@ -1,5 +1,6 @@
 package com.sparta.todolist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.isVisible
@@ -35,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
+
+        binding.btnFloatingAdd.setOnClickListener {
+            val intent= Intent(this, AddTodoActivity::class.java)
+            startActivity(intent)
+        }
     }
     class MyPagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
         override fun getItemCount(): Int = 2

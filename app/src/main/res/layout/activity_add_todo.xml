@@ -28,17 +28,18 @@
         android:layout_marginTop="8dp"
         android:hint="@string/todo_description"
         android:textColor="@color/theme_text"
-        android:textColorHint="18sp"
+        android:textColorHint="@color/theme_text"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/et_title" />
 
     <Button
-        android:backgroundTint="@color/theme_accent_dark"
-        android:textColor="@color/theme_text"
+        android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/theme_accent_dark"
         android:text="@string/todo_add"
+        android:textColor="@color/theme_text"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
