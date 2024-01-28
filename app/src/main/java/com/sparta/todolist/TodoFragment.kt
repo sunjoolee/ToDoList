@@ -23,7 +23,7 @@ class TodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        todoAdapter = TodoAdapter(TodoManager.getTodoList())
+        todoAdapter = TodoAdapter().apply { submitList(TodoManager.getTodoList()) }
         binding.recyclerview.adapter = todoAdapter
     }
 

@@ -4,31 +4,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sparta.todolist.databinding.RecyclerviewItemTodoBinding
 
-class TodoAdapter(var dataset: MutableList<Todo>) :
-    RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
-
-
+class TodoAdapter: ListAdapter<Todo, TodoAdapter.TodoViewHolder>(TodoDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val binding = RecyclerviewItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TodoViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = dataset.size
+    override fun getItemCount(): Int = currentList.size
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.switchButton.setOnCheckedChangeListener { _, isChecked ->
-            dataset[holder.adapterPosition].done = isChecked
+            getItem(position).done = isChecked
         }
         holder.bind(position)
     }
 
     private fun TodoViewHolder.bind(position: Int) {
-        titleTextView.text = dataset[position].title
-        descriptionTextView.text = dataset[position].description ?: ""
-        switchButton.isChecked = dataset[position].done
+        with(getItem(position)) {
+            titleTextView.text = title
+            descriptionTextView.text = description ?: ""
+            switchButton.isChecked = done
+        }
     }
 
     class TodoViewHolder(private val binding: RecyclerviewItemTodoBinding) :
