@@ -1,9 +1,11 @@
 package com.sparta.todolist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.sparta.todolist.databinding.ActivityAddTodoBinding
+
 
 class AddTodoActivity : AppCompatActivity() {
     private var _binding:ActivityAddTodoBinding? = null
@@ -13,6 +15,11 @@ class AddTodoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        binding.btnClose.setOnClickListener {
+            finish()
+        }
 
         binding.btnAdd.setOnClickListener {
             if(binding.etTitle.text.isNullOrBlank()){
