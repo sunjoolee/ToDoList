@@ -8,19 +8,26 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sparta.todolist.databinding.RecyclerviewItemTodoBinding
 
-class TodoAdapter: ListAdapter<Todo, TodoAdapter.TodoViewHolder>(TodoDiffCallback) {
+class TodoAdapter : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(TodoDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        val binding = RecyclerviewItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            RecyclerviewItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TodoViewHolder(binding)
     }
 
     override fun getItemCount(): Int = currentList.size
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.switchButton.setOnCheckedChangeListener { _, isChecked ->
+        holder.run {
+            initSwitchButton()
+            bind(position)
+        }
+    }
+
+    private fun TodoViewHolder.initSwitchButton() {
+        switchButton.setOnCheckedChangeListener { _, isChecked ->
             getItem(position).done = isChecked
         }
-        holder.bind(position)
     }
 
     private fun TodoViewHolder.bind(position: Int) {

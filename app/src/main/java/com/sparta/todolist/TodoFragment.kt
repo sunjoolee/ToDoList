@@ -23,13 +23,14 @@ class TodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView(){
         todoAdapter = TodoAdapter().apply { submitList(TodoManager.getTodoList()) }
         binding.recyclerview.adapter = todoAdapter
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
     companion object {
         fun newInstance() = TodoFragment()
     }
