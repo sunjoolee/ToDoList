@@ -27,7 +27,7 @@ class AddTodoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            TodoManager.addTodo(binding.etTitle.text!!.toString(), binding.etDescription.text.toString())
+            TodoViewModel.addTodo(binding.etTitle.text!!.toString(), binding.etDescription.text.toString())
             finish()
         }
     }

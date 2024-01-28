@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.sparta.todolist.databinding.FragmentTodoListBinding
 
 class TodoFragment : Fragment() {
@@ -27,7 +28,8 @@ class TodoFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        todoAdapter = TodoAdapter().apply { submitList(TodoManager.getTodoList()) }
+        todoAdapter = TodoAdapter()
+        TodoViewModel.todoList.observe(viewLifecycleOwner) { todoList -> todoAdapter.submitList(todoList) }
         binding.recyclerview.adapter = todoAdapter
     }
 
