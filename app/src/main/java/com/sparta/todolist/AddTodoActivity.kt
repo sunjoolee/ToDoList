@@ -2,6 +2,7 @@ package com.sparta.todolist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.sparta.todolist.databinding.ActivityAddTodoBinding
 
 class AddTodoActivity : AppCompatActivity() {
@@ -14,6 +15,12 @@ class AddTodoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnAdd.setOnClickListener {
+            if(binding.etTitle.text.isNullOrBlank()){
+                Toast.makeText(this,resources.getText(R.string.toast_enter_title),Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            TodoManager.addTodo(binding.etTitle.text!!.toString(), binding.etDescription.text.toString())
             finish()
         }
     }

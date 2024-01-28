@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     class MyPagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
         override fun getItemCount(): Int = 2
         override fun createFragment(position: Int): Fragment {
-            return if(position==0) TodoFragment() else BookmarkFragment()
+            return if(position==0) TodoFragment.newInstance() else BookmarkFragment()
         }
     }
 }
